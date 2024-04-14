@@ -63,10 +63,11 @@ switch ($_GET["op"]) {
 				"0"=>'<button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>',
 				"1"=>$reg->codigo_persona,
 				"2"=>$reg->nombre,
-				"3"=>$reg->departamento,
-				"4"=>$reg->fecha_hora,
-				"5"=>$reg->tipo,
-				"6"=>$reg->fecha
+				"3"=>$reg->apellidos,
+				"4"=>$reg->departamento,
+				"5"=>$reg->fecha_hora,
+				"6"=>$reg->tipo,
+				"7"=>$reg->fecha
 				);
 		}
 
@@ -91,10 +92,11 @@ switch ($_GET["op"]) {
 				"0"=>'<button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>',
 				"1"=>$reg->codigo_persona,
 				"2"=>$reg->nombre,
-				"3"=>$reg->departamento,
-				"4"=>$reg->fecha_hora,
-				"5"=>$reg->tipo,
-				"6"=>$reg->fecha
+				"3"=>$reg->apellidos,
+				"4"=>$reg->departamento,
+				"5"=>$reg->fecha_hora,
+				"6"=>$reg->tipo,
+				"7"=>$reg->fecha
 				);
 		}
 
@@ -120,9 +122,10 @@ switch ($_GET["op"]) {
 			$data[]=array(
 				"0"=>$reg->fecha,
 				"1"=>$reg->nombre,
-				"2"=>$reg->tipo,
-				"3"=>$reg->fecha_hora,
-				"4"=>$reg->codigo_persona
+				"2"=>$reg->apellidos,
+				"3"=>$reg->tipo,
+				"4"=>$reg->fecha_hora,
+				"5"=>$reg->codigo_persona
 				);
 		}
 
@@ -147,9 +150,10 @@ switch ($_GET["op"]) {
 			$data[]=array(
 				"0"=>$reg->fecha,
 				"1"=>$reg->nombre,
-				"2"=>$reg->tipo,
-				"3"=>$reg->fecha_hora,
-				"4"=>$reg->codigo_persona
+				"2"=>$reg->apellidos,
+				"3"=>$reg->tipo,
+				"4"=>$reg->fecha_hora,
+				"5"=>$reg->codigo_persona
 				);
 		}
 
