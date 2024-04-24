@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 0.1.2
     </div>
-    <strong>Copyright &copy; 2019-2020 <a target="_blank" href="">datajhapz</a></strong> Todo los derechos
+    <strong>Copyright &copy; 2024-2025 <a target="_blank" href="">datajhapz</a></strong> Todo los derechos
     reservados.
   </footer>
 
