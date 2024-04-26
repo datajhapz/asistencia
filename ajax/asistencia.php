@@ -1,46 +1,45 @@
 <?php 
 require_once "../modelos/Asistencia.php";
 
-$asistencia=new Asistencia();
+$asistencia = new Asistencia();
 
-$codigo_persona=isset($_POST["codigo_persona"])? limpiarCadena($_POST["codigo_persona"]):"";
-$iddepartamento=isset($_POST["iddepartamento"])? limpiarCadena($_POST["iddepartamento"]):"";
+$codigo_persona = isset($_POST["codigo_persona"]) ? limpiarCadena($_POST["codigo_persona"]) : "";
+$iddepartamento = isset($_POST["iddepartamento"]) ? limpiarCadena($_POST["iddepartamento"]) : "";
 
+// Verificar si se está enviando un registro de asistencia
+if (isset($_POST["tipo_registro"])) {
+    $tipo_registro = $_POST["tipo_registro"];
 
-
-switch ($_GET["op"]) {
-	case 'registrar_asistencia':
-		$result=$asistencia->verificarcodigo_persona($codigo_persona);
-
-      	if($result > 0) {
-	date_default_timezone_set('America/Lima');
-      		$fecha = date("Y-m-d");
-			$hora = date("H:i:s");
-
-			$result2=$asistencia->seleccionarcodigo_persona($codigo_persona);
-     		$count2 = mysqli_num_rows($result2);
-			   
-     		$par = abs($count2%2); 
-
-          if ($par == 0){ 
-                              
-                $tipo = "Entrada";
-        		$rspta=$asistencia->registrar_entrada($codigo_persona,$tipo);
-    			//$movimiento = 0;
-    			echo $rspta ? '<h3><strong>Nombres: </strong> '. $result['nombre'].' '.$result['apellidos'].'</h3><div class="alert alert-success"> Ingreso registrado '.$hora.'</div>' : 'No se pudo registrar el ingreso';
-   		  }else{ 
-			$tipo = "Salida";
-			$rspta=$asistencia->registrar_salida($codigo_persona,$tipo);
-			//$movimiento = 1;
-			echo $rspta ? '<h3><strong>Nombres: </strong> '. $result['nombre'].' '.$result['apellidos'].'</h3><div class="alert alert-danger"> Salida registrada '.$hora.'</div>' : 'No se pudo registrar el ingreso';
-        } 
+    // Si se selecciona "Registro de Ingreso"
+    if ($tipo_registro == "ingreso") {
+        $tipo = "Entrada";
+        // Verificar si el empleado existe
+        $result = $asistencia->verificarcodigo_persona($codigo_persona);
+        if ($result > 0) {
+            date_default_timezone_set('America/Lima');
+            $hora = date("H:i:s");
+            $rspta = $asistencia->registrar_entrada($codigo_persona, $tipo);
+            echo $rspta ? '<h3><strong>Nombres: </strong> ' . $result['nombre'] . ' ' . $result['apellidos'] . '</h3><div class="alert alert-success">Ingreso registrado ' . $hora . '</div>' : 'No se pudo registrar el ingreso';
         } else {
-		         echo '<div class="alert alert-danger">
-                       <i class="icon fa fa-warning"></i> No hay empleado registrado con esa código...!
-                         </div>';
+            echo '<div class="alert alert-danger">
+                        <i class="icon fa fa-warning"></i> No hay empleado registrado con ese código...!
+                        </div>';
         }
-
-	break;
-
+    }
+    // Si se selecciona "Registro de Salida"
+    elseif ($tipo_registro == "salida") {
+        $tipo = "Salida";
+        $result = $asistencia->verificarcodigo_persona($codigo_persona);
+        if ($result > 0) {
+            date_default_timezone_set('America/Lima');
+            $hora = date("H:i:s");
+            $rspta = $asistencia->registrar_salida($codigo_persona, $tipo);
+            echo $rspta ? '<h3><strong>Nombres: </strong> ' . $result['nombre'] . ' ' . $result['apellidos'] . '</h3><div class="alert alert-danger">Salida registrada ' . $hora . '</div>' : 'No se pudo registrar la salida';
+        } else {
+            echo '<div class="alert alert-danger">
+                        <i class="icon fa fa-warning"></i> No hay empleado registrado con ese código...!
+                        </div>';
+        }
+    }
 }
 ?>
