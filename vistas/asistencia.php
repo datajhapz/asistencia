@@ -39,21 +39,14 @@
         <!-- /.lockscreen-image -->
 
         <!-- lockscreen credentials (contains the form) -->
-        <form  action="asistencia.php" class="lockscreen-credentials" name="formulario" id="formulario" method="POST">
+        <form  action="" class="lockscreen-credentials" name="formulario" id="formulario" method="POST">
             <div class="input-group">
-                
-            <select class="form-control" name="tipo_registro" id="tipo_registro">
-                <option value="ingreso">Registro de Ingreso</option>
-                <option value="salida">Registro de Salida</option>
-            </select>
-            <input type="password" class="form-control" name="codigo_persona" id="codigo_persona" placeholder="Código de Estudiante">
-
+                <input type="password" class="form-control" name="codigo_persona" id="codigo_persona" placeholder="Código de Estudiante">
                 <div class="input-group-btn">
                     <button type="submit" id="submitBtn" class="btn btn-primary"><i class="fa fa-arrow-right text-muted"></i></button>
                 </div>
             </div>
         </form>
-        
         <!-- /.lockscreen credentials -->
     </div>
     <!-- /.lockscreen-item -->
@@ -81,17 +74,8 @@
         // Enfocar el campo de entrada al cargar la página
         $('#codigo_persona').focus();
 
-        // Restaurar la selección del usuario en el campo de selección
-        var selectedOption = localStorage.getItem('selectedOption');
-        if (selectedOption) {
-            $('#tipo_registro').val(selectedOption);
-        }
-
         // Agregar un evento al formulario para que se enfoque el campo de entrada después de enviarlo
         $('#formulario').submit(function(event) {
-            // Guardar la selección del usuario en el campo de selección en el almacenamiento local
-            localStorage.setItem('selectedOption', $('#tipo_registro').val());
-
             // Evitar el comportamiento predeterminado del formulario
             event.preventDefault();
             // Enviar el formulario mediante AJAX
@@ -103,23 +87,17 @@
             // Obtener el valor del código del estudiante
             var codigoEstudiante = $('#codigo_persona').val();
 
-            // Obtener el tipo de registro seleccionado
-            var tipoRegistro = $('#tipo_registro').val();
-
-            // Crear un objeto con los datos a enviar
-            var datos = {
-                codigo_persona: codigoEstudiante,
-                tipo_registro: tipoRegistro
-            };
-
-            // Realizar la solicitud AJAX
+            // Simular el envío del formulario
             $.ajax({
-                url: 'asistencia.php', // Reemplaza 'asistencia.php' con la ruta correcta de tu script PHP
+                url: 'tu_script.php', // Reemplaza 'tu_script.php' con la ruta correcta de tu script PHP
                 method: 'POST',
-                data: datos,
+                data: { codigo_persona: codigoEstudiante },
                 success: function(response) {
-                    // Manejar la respuesta del servidor
-                    console.log(response);
+                    // Aquí puedes agregar lógica para manejar la respuesta del servidor
+                    // Por ejemplo, si el registro fue exitoso, puedes limpiar el campo para el siguiente código
+                    $('#codigo_persona').val('');
+                    // Enfocar el campo de entrada nuevamente después de enviar el formulario
+                    $('#codigo_persona').focus();
                 },
                 error: function(xhr, status, error) {
                     // Manejar errores si es necesario

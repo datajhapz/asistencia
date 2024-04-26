@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2024-2025 <a target="_blank" href="https://github.com/datajhapz">https://github.com/datajhapz</a></strong> Todo los derechos
+    <strong>Copyright &copy; 2024-2025 <a target="_blank" href="#">Prof. Jhon García</a></strong> Todo los derechos
     reservados.
   </footer>
 
